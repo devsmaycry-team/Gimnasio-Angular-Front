@@ -1,0 +1,109 @@
+<section class="seccion-socios">
+  <div class="cabecera-seccion">
+    <div>
+      <h2 class="titulo-pagina">Gestión de Socios</h2>
+      <p class="subtitulo">Visualiza, edita e inscribe nuevos socios al sistema</p>
+    </div>
+    <button class="btn-primario">
+      <i class="fas fa-plus"></i> NUEVA INSCRIPCIÓN
+    </button>
+  </div>
+
+  <div class="filtros-tabla">
+    <div class="buscador">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Buscar por DNI o Nombre...">
+    </div>
+    <select class="selector-filtro">
+      <option value="todos">Todos los estados</option>
+      <option value="activo">Activos</option>
+      <option value="inactivo">Inactivos</option>
+      <option value="vencido">Vencidos</option>
+    </select>
+  </div>
+
+  <div class="contenedor-tabla">
+    <table class="tabla-gymbros">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Socio</th>
+          <th>DNI</th>
+          <th>Estado</th>
+          <th>Última Asistencia</th>
+          <th class="th-acciones">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge-id">#001</span></td>
+          <td>
+            <div class="info-user">
+              <strong>Juan Pérez</strong>
+              <span>juan.perezemail.com</span>
+            </div>
+          </td>
+          <td class="td-dni">35.123.456</td>
+          <td><span class="tag tag-activo">Activo</span></td>
+          <td class="td-fecha">Hoy 10:30hs</td>
+          <td>
+            <div class="acciones-iconos">
+              <button title="Ver Ficha Médica" class="btn-accion info">
+                <i class="fas fa-file-medical"></i>
+              </button>
+              <button title="Historial de Asistencias" class="btn-accion asistencias">
+                <i class="fas fa-calendar-check"></i>
+              </button>
+              <button title="Mediciones" class="btn-accion medicion">
+                <i class="fas fa-ruler-combined"></i>
+              </button>
+              <button title="Modificar Membresía" class="btn-accion plan">
+                <i class="fas fa-id-card"></i>
+              </button>
+              <button title="Editar Socio" class="btn-accion edit">
+                <i class="fas fa-user-edit"></i>
+              </button>
+              <button title="Dar de Baja" class="btn-accion delete">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="badge-id">#002</span></td>
+          <td>
+            <div class="info-user">
+              <strong>María González</strong>
+              <span>maria.gonzalezemail.com</span>
+            </div>
+          </td>
+          <td class="td-dni">42.987.654</td>
+          <td><span class="tag tag-vencido">Vencido</span></td>
+          <td class="td-fecha">15/01/2026</td>
+          <td>
+            <div class="acciones-iconos">
+              <button title="Ver Ficha Médica" class="btn-accion info">
+                <i class="fas fa-file-medical"></i>
+              </button>
+              <button title="Historial de Asistencias" class="btn-accion asistencias">
+                <i class="fas fa-calendar-check"></i>
+              </button>
+              <button title="Mediciones" class="btn-accion medicion">
+                <i class="fas fa-ruler-combined"></i>
+              </button>
+              <button title="Modificar Membresía" class="btn-accion plan">
+                <i class="fas fa-id-card"></i>
+              </button>
+              <button title="Editar Socio" class="btn-accion edit">
+                <i class="fas fa-user-edit"></i>
+              </button>
+              <button title="Dar de Baja" class="btn-accion delete">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

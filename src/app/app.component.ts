@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
@@ -9,4 +8,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Gimnasio-front';
+   constructor(private router: Router) {}
+
+   abrirModalSocio(){
+    this.router.navigate(['/gestion-socios']);
+  }
+
 }
