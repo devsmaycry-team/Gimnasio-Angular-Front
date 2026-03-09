@@ -1,58 +1,17 @@
-<div class="contenedor-admin">
-  <aside class="barra-lateral">
-    
-    <!-- LOGO -->
-    <div class="header-lateral">
-      <i class="fas fa-dumbbell"></i>
-      <span>GYMBROS ADMIN</span>
-    </div>
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" routerLink="/">
+    <i class="fas fa-dumbbell"></i>
+    <span>GYMBROS</span>
+  </a>
 
-    <!-- INFO PANEL -->
-    <div class="info-admin">
-      <h2>Panel de Administración</h2>
-      <p>Sucursal Central</p>
-      <span class="rol-admin">Administrador Maestro</span>
-    </div>
-    
-    <!-- MENU -->
-    <nav class="menu-navegacion">
-      <a href="panel-admin" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-chart-line"></i> Inicio
-      </a>
+  <ul class="nav-links">
+    <li><a routerLink="/">Inicio</a></li>
+    <li><a routerLink="/rutinas">Rutinas</a></li>
+    <li><a routerLink="/planes">Planes</a></li>
+    <li><a routerLink="/contacto">Contacto</a></li>
+    <li><a class="nav-cta" routerLink="/login">Iniciar Sesión</a></li>
+  </ul>
+</nav>
 
-      <a href="/gestion-socios" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-users"></i> Gestión de Socios
-      </a>
-
-      <a routerLink="/entrenadores" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-user-tie"></i> Entrenadores
-      </a>
-
-      <a routerLink="/planes" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-file-invoice-dollar"></i> Planes y Membresías
-      </a>
-
-      <a routerLink="/pagos" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-cash-register"></i> Control de Pagos
-      </a>
-
-      <a routerLink="/horarios" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-calendar-check"></i> Horarios de Clases
-      </a>
-
-      <a routerLink="/logs" routerLinkActive="activo" class="item-nav">
-        <i class="fas fa-history"></i> Logs del Sistema
-      </a>
-    </nav>
-
-    <div class="footer-lateral">
-      <button class="btn-cerrar">
-        <i class="fas fa-sign-out-alt"></i> Salir
-      </button>
-    </div>
-  </aside>
-
-  <main class="contenido-principal">
-    <router-outlet></router-outlet>
-  </main>
-</div>
+<router-outlet></router-outlet>

@@ -1,48 +1,38 @@
-<div class="register-page">
-  <header class="gym-header">
-    <div class="logo-wrapper">
-      <i class="fas fa-user-plus"></i>
-      <h1>ÚNETE A GYMBROS</h1>
-    </div>
-  </header>
-
-  <main class="register-main">
-    <div class="register-card">
-      <section class="welcome-section">
-        <h2>Crea tu cuenta</h2>
-        <p>Completa tus datos para empezar a entrenar</p>
-      </section>
-
-      <div class="form-body">
-        <div class="input-field">
-          <i class="far fa-user prefix"></i>
-          <input type="text" placeholder="Nombre Completo">
-        </div>
-
-        <div class="input-field">
-          <i class="far fa-envelope prefix"></i>
-          <input type="email" placeholder="Correo Electrónico">
-        </div>
-
-        <div class="input-field">
-          <i class="fas fa-lock prefix"></i>
-          <input type="password" placeholder="Contraseña">
-        </div>
-
-        <div class="input-field">
-          <i class="fas fa-shield-alt prefix"></i>
-          <input type="password" placeholder="Confirmar Contraseña">
-        </div>
-
-        <button class="btn-primary">
-          REGISTRARME
-        </button>
-
-        <div class="login-footer">
-          <span>¿Ya tienes cuenta?</span>
-          <a href="/login"><strong>Inicia Sesión</strong></a>
-        </div>
+<div class="fondo-pagina">
+  <div class="texto-fondo">GYMBROS</div>
+  <div class="tarjeta-login">
+    <section class="seccion-bienvenida">
+      <h2>Crea tu cuenta</h2>
+      <p>Completá tus datos para empezar a entrenar</p>
+    </section>
+    <div class="cuerpo-formulario">
+      <div class="campo-input">
+        <i class="far fa-user icono-izq"></i>
+        <input type="text" placeholder="Nombre Completo">
       </div>
+      <div class="campo-input">
+        <i class="far fa-envelope icono-izq"></i>
+        <input type="email" placeholder="Correo Electrónico">
+      </div>
+      <div class="campo-input">
+        <i class="fas fa-lock icono-izq"></i>
+        <input type="password" placeholder="Contraseña">
+        <i class="fas fa-eye icono-der"></i>
+      </div>
+      <div class="campo-input">
+        <i class="fas fa-shield-alt icono-izq"></i>
+        <input type="password" placeholder="Confirmar Contraseña">
+        <i class="fas fa-eye icono-der"></i>
+      </div>
+      <button class="boton-principal">REGISTRARME</button>
+      <div class="separador">
+        <span>ó</span>
+      </div>
+      <div class="pie-registro">
+        <span>¿Ya tenés cuenta?</span>
+        <a routerLink="/login"><strong>Iniciá Sesión</strong></a>
+      </div>
+      <div class="linea-inferior"></div>
     </div>
-  </main>
+  </div>
 </div>

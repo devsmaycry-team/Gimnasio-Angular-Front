@@ -5,7 +5,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { PanelAdminComponent } from './panel-admin/panel-admin.component';
 import { GestionSociosComponent } from './gestion-socios/gestion-socios.component';
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   {path: 'panel-admin', component: PanelAdminComponent},

@@ -1,128 +1,221 @@
-.register-page {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #ffffff;
+:host {
+  --negro:   #0d0d0d;
+  --oscuro:  #141414;
+  --tarjeta: #1a1a1a;
+  --borde:   #2a2a2a;
+  --rojo:    #e02b2b;
+  --rojo-fuerte: #ff3b3b;
+  --dorado:  #c8a04a;
+  --blanco:  #f0f0f0;
+  --gris:    #888;
+  display: block;
+  min-height: 100vh; /* ← agregado */
 }
 
-/* Header de registro - Un poco más pequeño que el de login para dar espacio al form */
-.gym-header {
-  flex: 0 0 30vh;
-  background-color: #673ab7;
+.fondo-pagina {
+  min-height: 100vh;  /* ← cambiado de height a min-height */
+  width: 100%;
+  padding: 40px;
+  padding-top: 104px;
+  box-sizing: border-box;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-bottom-left-radius: 100px;
-  color: white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.logo-wrapper {
-  text-align: center;
-}
-
-.logo-wrapper i {
-  font-size: 70px;
-  margin-bottom: 10px;
-}
-
-.logo-wrapper h1 {
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: 3px;
-}
-
-/* Cuerpo principal */
-.register-main {
-  flex: 1;
-  display: flex;
   justify-content: center;
-  padding: 30px 20px;
-}
-
-.register-card {
-  width: 100%;
-  max-width: 500px;
-}
-
-.welcome-section {
-  margin-bottom: 35px;
-}
-
-.welcome-section h2 {
-  font-size: 30px;
-  font-weight: bold;
-  color: #212121;
-}
-
-.welcome-section p {
-  font-size: 16px;
-  color: #757575;
-}
-
-/* Estilo de Inputs (Consistente con Login) */
-.input-field {
+  background: var(--negro);
   position: relative;
-  margin-bottom: 18px;
+  overflow: hidden;
 }
 
-.input-field input {
-  width: 100%;
-  padding: 18px 50px;
-  border-radius: 18px;
-  border: 1.5px solid #eceff1;
-  font-size: 16px;
-  outline: none;
-  background-color: #fcfcfc;
-  transition: all 0.3s ease;
-}
 
-.input-field input:focus {
-  border-color: #673ab7;
-  background-color: #fff;
-  box-shadow: 0 0 8px rgba(103, 58, 183, 0.1);
-}
-
-.prefix {
+/* Efecto fondo */
+.fondo-pagina::before {
+  content: '';
   position: absolute;
-  left: 18px;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 60%, rgba(224,43,43,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 30%, rgba(200,160,74,0.06) 0%, transparent 70%);
+}
+
+/* Texto gigante de fondo */
+.texto-fondo {
+  position: absolute;
+  bottom: -20px;
+  left: -10px;
+  font-size: clamp(120px, 18vw, 240px);
+  font-weight: 900;
+  letter-spacing: 10px;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Tarjeta */
+.tarjeta-login {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--rojo);
+  padding: 40px 40px 36px;
+  color: var(--blanco);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sección bienvenida */
+.seccion-bienvenida {
+  margin-bottom: 28px;
+}
+
+.seccion-bienvenida h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.seccion-bienvenida p {
+  font-size: 0.85rem;
+  color: var(--gris);
+}
+
+/* Campos input */
+.campo-input {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.campo-input input {
+  width: 100%;
+  box-sizing: border-box; /* ← agregado, esto arregla el desplazamiento */
+  background: var(--oscuro);
+  border: 1px solid var(--borde);
+  color: var(--blanco);
+  font-size: 0.9rem;
+  padding: 13px 16px 13px 42px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.campo-input input::placeholder {
+  color: var(--gris);
+}
+
+.campo-input input:focus {
+  border-color: var(--rojo);
+  background: #181818;
+}
+
+/* Iconos */
+.icono-izq,
+.icono-der {
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px;
-  color: #9e9e9e;
+  font-size: 0.85rem;
+  color: var(--gris);
 }
 
-/* Botón de acción */
-.btn-primary {
-  width: 100%;
-  height: 60px;
-  background-color: #673ab7;
-  color: white;
-  border: none;
-  border-radius: 18px;
-  font-size: 17px;
-  font-weight: bold;
-  margin-top: 15px;
+.icono-izq {
+  left: 14px;
+}
+
+.icono-der {
+  right: 14px;
   cursor: pointer;
-  box-shadow: 0 8px 15px rgba(103, 58, 183, 0.2);
-  transition: background 0.3s ease;
+  transition: color 0.2s;
 }
 
-.btn-primary:hover {
-  background-color: #5e35b1;
+.icono-der:hover {
+  color: var(--blanco);
 }
 
-/* Footer */
-.login-footer {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 15px;
-  padding-bottom: 20px;
+/* Acciones */
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 22px;
+  margin-top: 6px;
 }
 
-.login-footer a {
-  color: #673ab7;
+.link-olvido {
+  font-size: 0.8rem;
+  color: var(--gris);
   text-decoration: none;
-  margin-left: 5px;
+  transition: color 0.2s;
+}
+
+.link-olvido:hover {
+  color: var(--dorado);
+}
+
+/* Botón principal */
+.boton-principal {
+  width: 100%;
+  background: var(--rojo);
+  color: var(--blanco);
+  border: none;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.boton-principal:hover {
+  background: var(--rojo-fuerte);
+}
+
+.boton-principal:active {
+  transform: scale(0.98);
+}
+
+/* Separador */
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 18px;
+}
+
+.separador::before,
+.separador::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+.separador span {
+  font-size: 0.75rem;
+  color: var(--gris);
+}
+
+/* Pie registro */
+.pie-registro {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--gris);
+}
+
+.pie-registro a {
+  color: var(--rojo);
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.pie-registro a:hover {
+  color: var(--rojo-fuerte);
+}
+
+/* Línea inferior */
+.linea-inferior {
+  height: 3px;
+  margin-top: 28px;
+  background: linear-gradient(90deg, var(--rojo) 0%, var(--dorado) 100%);
 }

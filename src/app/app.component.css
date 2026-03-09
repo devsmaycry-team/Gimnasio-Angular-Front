@@ -1,198 +1,53 @@
-/* RESETEO VITAL PARA PANTALLA COMPLETA */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.contenedor-admin {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  background-color: #f8f9fa;
+nav {
   position: fixed;
-  top: 0;
-  left: 0;
-}
-
-/* BARRA LATERAL */
-.barra-lateral {
-  width: 280px;
-  min-width: 280px;
-  height: 100%;
-  background-color: #1a1a2e;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-  z-index: 10;
-}
-
-/* CONTENIDO PRINCIPAL CON SCROLL INDEPENDIENTE */
-.contenido-principal {
-  flex: 1;
-  height: 100vh;
-  padding: 40px;
-  overflow-y: auto;
-  background-color: #f8f9fa;
-}
-
-/* --- RESTO DE ESTILOS --- */
-.header-lateral {
-  padding: 25px;
-  background-color: #673ab7;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-weight: 900;
-  font-size: 1.2rem;
-}
-/* INFO PANEL DENTRO DE LA BARRA */
-.info-admin {
-  padding: 20px 25px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: #0d0d0d;
+  border-bottom: 2px solid #e02b2b;
 }
 
-.info-admin h2 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-  color: #ffffff;
-}
-
-.info-admin p {
-  font-size: 0.85rem;
-  color: #b0b3c7;
-  margin-bottom: 6px;
-}
-
-.rol-admin {
-  font-size: 0.75rem;
-  background-color: rgba(103, 58, 183, 0.25);
-  color: #b39ddb;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-block;
-  font-weight: 600;
-}
-
-.menu-navegacion {
-  flex: 1;
-  padding-top: 20px;
-}
-
-.item-nav {
+.nav-logo {
   display: flex;
   align-items: center;
-  padding: 15px 25px;
-  color: #caced1;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  gap: 15px;
-}
-
-.item-nav:hover, .item-nav.activo {
-  background-color: rgba(103, 58, 183, 0.15);
-  color: #b39ddb;
-  border-left: 5px solid #673ab7;
-}
-
-.footer-lateral {
-  padding: 20px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.btn-cerrar {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  color: #ff5252;
-  border: 1px solid #ff5252;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 10px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
-.btn-cerrar:hover {
-  background-color: #ff5252;
-  color: white;
+.nav-logo i {
+  font-size: 1.3rem;
+  color: #e02b2b;
 }
 
-.barra-superior {
-  margin-bottom: 30px;
-}
-
-.info-sucursal h2 {
-  color: #1a1a2e;
+.nav-logo span {
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.8rem;
-  margin-bottom: 5px;
+  letter-spacing: 3px;
+  color: #f0f0f0;
 }
 
-.info-sucursal p {
-  color: #666;
-  font-size: 0.95rem;
-}
-
-/* TARJETAS */
-.tarjetas-resumen {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-}
-
-.tarjeta {
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 32px;
+  list-style: none;
 }
 
-.tarjeta:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+.nav-links a {
+  text-decoration: none;
+  color: #888;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-.icono {
-  width: 60px;
-  height: 60px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
+.nav-cta {
+  background: #e02b2b;
+  color: #fff !important;
+  padding: 7px 20px;
 }
-
-.datos h3 {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.cifra {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1a1a2e;
-}
-
-.color-1 { background-color: #ede7f6; color: #673ab7; }
-.color-2 { background-color: #e3f2fd; color: #1e88e5; }
-.color-3 { background-color: #fff3e0; color: #fb8c00; }
-.color-4 { background-color: #e8f5e9; color: #43a047; }
