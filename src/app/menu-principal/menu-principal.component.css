@@ -1,0 +1,355 @@
+/* ============================================================
+   VARIABLES GLOBALES (Colores y Ajustes de Marca)
+   ============================================================ */
+:host {
+  --negro:   #0d0d0d;
+  --oscuro:  #141414;
+  --tarjeta: #1a1a1a;
+  --borde:   #2a2a2a;
+  --rojo:    #e02b2b;
+  --rojo-fuerte: #ff3b3b;
+  --dorado:  #c8a04a;
+  --blanco:  #f0f0f0;
+  --gris:    #888;
+}
+
+/* ============================================================
+   ESTILOS DE LA BARRA DE NAVEGACIÓN (NAVBAR)
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: var(--negro);
+  border-bottom: 2px solid var(--rojo);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo i {
+  font-size: 1.3rem;
+  color: var(--rojo);
+}
+
+.nav-logo span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  color: var(--blanco);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--gris);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--blanco);
+}
+
+/* Botón de Iniciar Sesión en la Nav */
+.nav-cta {
+  background: var(--rojo);
+  color: var(--blanco) !important;
+  padding: 8px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-cta:hover {
+  background: var(--rojo-fuerte);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   ESTILOS DEL MODAL (OVERLAY Y CONTENEDOR)
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0; /* Cubre toda la pantalla */
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
+  backdrop-filter: blur(8px);    /* Desenfoque del fondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;                 /* Siempre por encima de la nav */
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.tarjeta-login {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--rojo); /* Línea superior roja distintiva */
+  padding: 40px 40px 36px;
+  color: var(--blanco);
+  font-family: system-ui, -apple-system, sans-serif;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Botón "X" para cerrar el modal */
+.boton-cerrar-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--gris);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10;
+}
+
+.boton-cerrar-modal:hover {
+  color: var(--rojo);
+  transform: rotate(90deg);
+}
+/* ============================================================
+   ACCIONES (Contenedor del link de olvido)
+   ============================================================ */
+.acciones {
+  display: flex;
+  justify-content: flex-end; /* Alinea el texto a la derecha */
+  margin-bottom: 22px;
+  margin-top: 8px;
+}
+
+.link-olvido {
+  font-size: 0.8rem;
+  color: var(--gris); /* Color base #888 */
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Efecto al pasar el mouse */
+.link-olvido:hover {
+  color: var(--dorado); /* Cambia al color dorado #c8a04a al hacer hover */
+  text-shadow: 0 0 8px rgba(200, 160, 74, 0.3); /* Un pequeño brillo dorado */
+}
+
+/* Opcional: Una línea muy fina que aparece abajo en hover */
+.link-olvido::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--dorado);
+  transition: width 0.3s ease;
+}
+
+.link-olvido:hover::after {
+  width: 100%;
+}
+/* ============================================================
+   ELEMENTOS INTERNOS DE LA TARJETA (LOGIN)
+   ============================================================ */
+
+/* Texto gigante de fondo "GYMBROS" */
+.texto-fondo {
+  position: absolute;
+  bottom: -10px;
+  left: -5px;
+  font-size: 100px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.02); /* Casi invisible */
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.seccion-bienvenida {
+  margin-bottom: 28px;
+}
+
+.seccion-bienvenida h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.seccion-bienvenida p {
+  font-size: 0.8rem;
+  color: var(--gris);
+}
+
+/* Estilos de Inputs */
+.campo-input {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.campo-input input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--oscuro);
+  border: 1px solid var(--borde);
+  color: var(--blanco);
+  font-size: 0.9rem;
+  padding: 14px 16px 14px 45px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.campo-input input:focus {
+  border-color: var(--rojo);
+  background: #181818;
+}
+
+.icono-izq {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gris);
+  font-size: 0.9rem;
+}
+
+/* Botón Principal de envío */
+.boton-principal {
+  width: 100%;
+  background: var(--rojo);
+  color: var(--blanco);
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+
+.boton-principal:hover {
+  background: var(--rojo-fuerte);
+  box-shadow: 0 0 20px rgba(224, 43, 43, 0.4);
+}
+
+/* Separador y Pie de registro */
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.separador::before, .separador::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+.separador span {
+  font-size: 0.7rem;
+  color: var(--gris);
+  text-transform: uppercase;
+}
+
+.pie-registro {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--gris);
+}
+
+.pie-registro a {
+  color: var(--rojo);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Línea decorativa final con degradado */
+.linea-inferior {
+  height: 3px;
+  margin-top: 30px;
+  background: linear-gradient(90deg, var(--rojo) 0%, var(--dorado) 100%);
+}
+
+/* ============================================================
+   ANIMACIONES
+   ============================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   CARD DE EXITO
+   ============================================================ */
+.modal-card {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  padding: 30px;
+  text-align: center;
+  max-width: 350px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  color: var(--dorado);
+  margin-bottom: 15px;
+}
+
+.modal-card h3 {
+  color: var(--blanco);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.modal-card p {
+  color: var(--gris);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.btn-modal {
+  background: var(--rojo);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.btn-modal:hover {
+  background: var(--rojo-fuerte);
+}

@@ -1,0 +1,7 @@
+export interface DiasRutina{
+    id?:number,
+    rutina:Rutina,
+    rutinaEjercicios: RutinaEjercicio[] = [],
+    diaSemana:string,
+    orden:number
+}

@@ -1,0 +1,47 @@
+<div class="admin-wrapper">
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <i class="fas fa-dumbbell"></i>
+      <span>GYMBROS</span>
+      <small class="badge-admin">SUPER ADMIN</small>
+    </div>
+
+    <div class="sidebar-scroll">
+      <div class="admin-group">
+        <p class="group-title">Panel de Control</p>
+        <a routerLink="dashboard" routerLinkActive="active-link" class="admin-item">
+          <i class="fas fa-chart-pie"></i> Dashboard Global
+        </a>
+        <a routerLink="multi-gym" routerLinkActive="active-link" class="admin-item">
+          <i class="fas fa-layer-group"></i> Vista Multi-Gimnasio
+        </a>
+      </div>
+
+      <div class="admin-group">
+        <p class="group-title">Seguridad & Usuarios</p>
+        <a routerLink="usuarios" routerLinkActive="active-link" class="admin-item">
+          <i class="fas fa-users-cog"></i> Gestión Usuarios
+        </a>
+        <a routerLink="auditoria" routerLinkActive="active-link" class="admin-item">
+          <i class="fas fa-file-contract"></i> Auditoría & Logs
+        </a>
+      </div>
+
+      </div>
+
+    <div class="sidebar-user">
+      <div class="user-pill">
+        <i class="fas fa-user-circle"></i>
+        <span>{{ getNombreUsuario() }}</span>
+      </div>
+      <button (click)="logout()" class="btn-exit" title="Cerrar Sesión">
+        <i class="fas fa-power-off"></i>
+        Salir
+      </button>
+    </div>
+  </aside>
+
+  <main class="admin-main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
