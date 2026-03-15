@@ -1,4 +1,6 @@
-interface HorariosClases {
+import { Clase } from "./Clase";
+
+export interface HorariosClases {
     id?: number;
     clase: Clase;
     dia_semana: string;

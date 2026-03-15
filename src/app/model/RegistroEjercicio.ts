@@ -1,4 +1,7 @@
-interface RegistroEjercicio {
+import { Ejercicio } from "./Ejercicio";
+import { Rutina } from "./Rutina";
+
+export interface RegistroEjercicio {
     id?: number;
     rutina: Rutina;
     ejercicio: Ejercicio;

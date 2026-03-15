@@ -22,16 +22,7 @@ export class LoginService {
   }
 
   //Devuelve datos del usuario
-me() {
-  const token = localStorage.getItem('token');
-
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
-
-  return this.httpClient.get<any>(
-    this.appiServer + "/api/auth/me",
-    { headers }
-  );
-}
+  me() {
+    return this.httpClient.get<any>(this.appiServer + "/api/auth/me");
+  }
 }

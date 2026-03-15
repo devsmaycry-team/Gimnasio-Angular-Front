@@ -1,4 +1,7 @@
-interface Pagos {
+import { Membresia } from "./Membresia";
+import { Socio } from "./Socio";
+
+export interface Pagos {
     id?: number;
     socio: Socio;
     membresia: Membresia;

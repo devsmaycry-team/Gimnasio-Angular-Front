@@ -1,3 +1,6 @@
+import { RegistroEjercicio } from "./RegistroEjercicio";
+import { RutinaEjercicio } from "./RutinaEjercicio";
+
 export interface Ejercicio {
     id?: number;
     nombre: string;

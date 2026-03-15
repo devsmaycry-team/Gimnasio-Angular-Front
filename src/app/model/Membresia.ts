@@ -1,4 +1,8 @@
-interface Membresia {
+import { Pagos } from "./Pagos";
+import { Plan } from "./Plan";
+import { Socio } from "./Socio";
+
+export interface Membresia {
     id?: number;
     socio: Socio;
     plan: Plan;

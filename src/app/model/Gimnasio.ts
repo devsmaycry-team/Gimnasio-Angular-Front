@@ -1,4 +1,9 @@
-interface Gimnasio {
+import { Clase } from "./Clase";
+import { Entrenador } from "./Entrenador";
+import { Plan } from "./Plan";
+import { Socio } from "./Socio";
+
+export interface Gimnasio {
     id?: number;
     nombre: string;
     direccion: string;

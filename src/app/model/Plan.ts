@@ -1,4 +1,7 @@
-interface Plan {
+import { Gimnasio } from "./Gimnasio";
+import { Membresia } from "./Membresia";
+
+export interface Plan {
     id?: number;
     gimnasio: Gimnasio;
     nombre: string;

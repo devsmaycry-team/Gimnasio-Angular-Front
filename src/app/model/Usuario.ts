@@ -1,4 +1,8 @@
-interface Usuario {
+import { Persona } from "./Persona";
+import { Socio } from "./Socio";
+import { UserRol } from "./UserRol";
+
+export interface Usuario {
     id?: number;
     persona: Persona;
     correo: string;

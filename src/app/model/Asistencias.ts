@@ -1,3 +1,5 @@
+import { Socio } from "./Socio";
+
 export interface Asistencias{
     id?:number,
     tipo:string,

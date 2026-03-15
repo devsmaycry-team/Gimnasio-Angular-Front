@@ -1,4 +1,8 @@
-interface Rutina {
+import { DiasRutina } from "./DiasRutina";
+import { Entrenador } from "./Entrenador";
+import { RegistroEjercicio } from "./RegistroEjercicio";
+
+export interface Rutina {
     id?: number;
     entrenador: Entrenador;
     nombre: string;
