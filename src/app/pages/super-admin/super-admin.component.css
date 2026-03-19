@@ -177,3 +177,14 @@
   border-radius: 10px;
 }
 
+
+.admin-wrapper {
+  display: flex;
+}
+
+.admin-main-content {
+  margin-left: 300px;
+  flex: 1;
+  min-height: 100vh;
+  background-color: var(--negro);
+}
