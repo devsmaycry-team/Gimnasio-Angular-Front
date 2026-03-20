@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { GimnasioService } from '../../../services/Gimnasio/Gimnasio.service';
 import { Gimnasio } from '../../../model/Gimnasio';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-dashboard-general',
-  imports: [],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './dashboard-general.component.html',
   styleUrl: './dashboard-general.component.css'
 })
@@ -33,8 +35,7 @@ export class DashboardGeneralComponent {
     
     // Opcional: Guardar en localStorage para persistencia si es necesario
     //localStorage.setItem('selectedGymId', idGym.toString());
-    
-    //this.router.navigate(['/admin/gym-details', idGym]);
+    this.router.navigate(['/vista-gimnasio', idGym]);
   }
   
 }

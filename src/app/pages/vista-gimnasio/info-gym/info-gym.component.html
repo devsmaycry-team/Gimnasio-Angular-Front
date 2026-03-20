@@ -1,0 +1,33 @@
+<!-- Tabla -->
+  <div class="section">
+    <h2 class="section-title">Usuarios del sistema</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre gimnasio</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Codigo gym</th>
+            <th>Cant. socios</th>
+            <th>Cant. planes</th>
+            <th>Cant. entrenadores</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td><strong>{{ gimnasio?.id}}</strong></td>
+              <td class="muted">{{ gimnasio?.nombre }}</td>
+              <td><span class="muted">{{ gimnasio?.direccion }}</span></td>
+              <td><span class="muted">{{ gimnasio?.telefono }}</span></td>
+              <td><span class="muted">{{ gimnasio?.email }}</span></td>
+              <td><span class="muted">{{ gimnasio?.codigoGym }}</span></td>
+              <td class="text-right">
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

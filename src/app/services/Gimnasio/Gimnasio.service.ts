@@ -18,4 +18,8 @@ export class GimnasioService {
     return this.httpClient.get<Gimnasio[]>(this.appiServer + "/gimnasios");
   }
 
+  obtenerPorId(id: number): Observable<Gimnasio> {
+    return this.httpClient.get<Gimnasio>(`${this.appiServer}/gimnasios/${id}`);
+  }
+
 }

@@ -1,0 +1,230 @@
+/* ============================================================
+   VARIABLES LOCALES
+   ============================================================ */
+:host {
+  --negro:      #0d0d0d;
+  --oscuro:     #141414;
+  --tarjeta:    #1a1a1a;
+  --borde:      #2a2a2a;
+  --rojo:       #e02b2b;
+  --dorado:     #c8a04a;
+  --blanco:     #f0f0f0;
+  --gris:       #888;
+  --gris-claro: #bbbbbb;
+
+  display: block;
+  background-color: var(--negro);
+  min-height: 100vh;
+  color: var(--blanco);
+}
+
+/* ============================================================
+   WRAPPER PRINCIPAL
+   ============================================================ */
+.dashboard-wrapper {
+  padding: 2rem 3rem;
+}
+
+/* ============================================================
+   MÉTRICAS
+   ============================================================ */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.metric-card {
+  background-color: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-top: 2px solid var(--borde);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-card:hover {
+  border-top-color: var(--dorado);
+  transition: border-top-color 0.2s ease;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 1.1;
+}
+
+.metric-sub {
+  font-size: 0.78rem;
+  color: var(--gris);
+}
+
+.metric-sub.up {
+  color: var(--dorado);
+}
+
+/* ============================================================
+   SECCIÓN
+   ============================================================ */
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.875rem;
+}
+
+/* ============================================================
+   TABLA
+   ============================================================ */
+.table-wrapper {
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+thead tr {
+  background-color: var(--oscuro);
+  border-bottom: 1px solid var(--borde);
+}
+
+th {
+  padding: 11px 16px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+td {
+  padding: 13px 16px;
+  color: var(--gris-claro);
+  border-bottom: 1px solid var(--borde);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: var(--tarjeta);
+}
+
+td strong {
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+td.muted {
+  color: var(--gris);
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* ============================================================
+   CODE TAG
+   ============================================================ */
+.code-tag {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: var(--dorado);
+  background-color: var(--oscuro);
+  border: 1px solid var(--borde);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge.active {
+  background-color: rgba(200, 160, 74, 0.12);
+  color: var(--dorado);
+  border: 1px solid rgba(200, 160, 74, 0.3);
+}
+
+.badge.inactive {
+  background-color: rgba(136, 136, 136, 0.1);
+  color: var(--gris);
+  border: 1px solid rgba(136, 136, 136, 0.25);
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-primary {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  background-color: transparent;
+  border: 1px solid var(--rojo);
+  color: var(--rojo);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--rojo);
+  color: var(--blanco);
+}
+
+.btn-ghost {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  background-color: transparent;
+  border: 1px solid var(--borde);
+  color: var(--gris);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gris-claro);
+  color: var(--blanco);
+}

@@ -8,7 +8,8 @@ import { EntrenadorComponent } from './pages/entrenador/entrenador.component';
 import { DashboardGeneralComponent } from './pages/super-admin/dashboard-general/dashboard-general.component';
 import { GestionUsuariosComponent } from './pages/super-admin/gestion-usuarios/gestion-usuarios.component';
 import { SuperAdminComponent } from './pages/super-admin/super-admin.component';
-
+import { VistaGimnasioComponent } from './pages/vista-gimnasio/vista-gimnasio.component';
+import { InfoGymComponent } from './pages/vista-gimnasio/info-gym/info-gym.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   { path: 'menu', component: MenuPrincipalComponent },
@@ -28,6 +29,14 @@ export const routes: Routes = [
       
       // { path: 'usuarios', component: UsuariosComponent },
       // { path: 'auditoria', component: AuditoriaComponent },
+    ]
+  },
+  {
+    path: 'vista-gimnasio/:id',
+    component: VistaGimnasioComponent,
+    children: [
+      { path: '', redirectTo: 'infogym', pathMatch: 'full' }, // opcional pero recomendado
+      { path: 'infogym', component: InfoGymComponent }
     ]
   },
 
