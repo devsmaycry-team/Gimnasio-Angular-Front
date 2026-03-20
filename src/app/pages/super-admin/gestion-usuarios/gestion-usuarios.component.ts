@@ -113,8 +113,7 @@ export class GestionUsuariosComponent implements OnInit {
   }
 
   getRol(usuario: Usuario): string {
-    // userRols no viene del backend por @JsonBackReference
-    // cuando el backend lo resuelva, sería: usuario.userRols?.[0]?.rol?.cargo
-    return 'Sin rol';
+    if (!usuario.userRols || usuario.userRols.length === 0) return 'Sin rol';
+    return usuario.userRols[0].rol.cargo;
   }
 }

@@ -15,7 +15,7 @@ export class GimnasioService {
   }
 
   obtenerTodos(): Observable<any> {
-    return this.httpClient.get<Gimnasio[]>(this.appiServer + "/gimnasios/todos");
+    return this.httpClient.get<Gimnasio[]>(this.appiServer + "/gimnasios");
   }
 
 }
