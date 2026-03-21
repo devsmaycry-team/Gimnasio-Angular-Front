@@ -10,6 +10,7 @@ import { GestionUsuariosComponent } from './pages/super-admin/gestion-usuarios/g
 import { SuperAdminComponent } from './pages/super-admin/super-admin.component';
 import { VistaGimnasioComponent } from './pages/vista-gimnasio/vista-gimnasio.component';
 import { InfoGymComponent } from './pages/vista-gimnasio/info-gym/info-gym.component';
+import { PlanesComponent } from './pages/vista-gimnasio/planes/planes.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   { path: 'menu', component: MenuPrincipalComponent },
@@ -35,8 +36,9 @@ export const routes: Routes = [
     path: 'vista-gimnasio/:id',
     component: VistaGimnasioComponent,
     children: [
-      { path: '', redirectTo: 'infogym', pathMatch: 'full' }, // opcional pero recomendado
-      { path: 'infogym', component: InfoGymComponent }
+      { path: '', redirectTo: 'infogym', pathMatch: 'full' }, 
+      { path: 'infogym', component: InfoGymComponent },
+      { path: 'planes', component: PlanesComponent }
     ]
   },
 

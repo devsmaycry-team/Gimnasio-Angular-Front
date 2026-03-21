@@ -1,0 +1,118 @@
+<div class="dashboard-wrapper">
+
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Gestión de Planes</h1>
+      <p class="page-sub">CRUD completo · Planes de gimnasio</p>
+    </div>
+    <button class="btn-primary" (click)="abrirCrear()">
+      <i class="fas fa-plus"></i> Nuevo Plan
+    </button>
+  </div>
+
+  @if (error) {
+    <div class="error-banner">{{ error }}</div>
+  }
+
+  <div class="section">
+    <h2 class="section-title">Planes disponibles</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Duración (días)</th>
+            <th>Clases incluidas</th>
+            <th>Gimnasio</th>
+            <th class="text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (cargando) {
+            <tr>
+              <td colspan="6" class="muted" style="text-align:center; padding: 2rem;">
+                Cargando planes...
+              </td>
+            </tr>
+          }
+
+          @for (plan of planes; track plan.id) {
+            <tr>
+              <td><strong>{{ plan.nombre }}</strong></td>
+              <td class="muted">${{ plan.precio }}</td>
+              <td>{{ plan.duracion_dias }}</td>
+              <td>{{ plan.clases_incluidas }}</td>
+              
+              <td>{{ getNombreGimnasio(plan) }}</td>
+              
+              <td class="text-right">
+                <div class="actions">
+                  <button class="btn-ghost" (click)="abrirEditar(plan)">Editar</button>
+                  <button class="btn-primary" (click)="eliminar(plan.id!)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  @if (mostrarFormulario) {
+    <div class="modal-overlay" (click)="cerrarFormulario()">
+      <div class="modal-box" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+          <h2 class="section-title" style="margin:0">
+            {{ modoEdicion ? 'Editar Plan' : 'Nuevo Plan' }}
+          </h2>
+          <button class="btn-ghost" (click)="cerrarFormulario()">✕</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" [(ngModel)]="form.nombre" placeholder="Nombre del plan" />
+          </div>
+
+          <div class="form-group">
+            <label>Precio</label>
+            <input type="number" [(ngModel)]="form.precio" placeholder="Precio" />
+          </div>
+
+          <div class="form-group">
+            <label>Duración (días)</label>
+            <input type="number" [(ngModel)]="form.duracion_dias" placeholder="Duración en días" />
+          </div>
+
+          <div class="form-group">
+            <label>Clases incluidas</label>
+            <input type="number" [(ngModel)]="form.clases_incluidas" placeholder="Cantidad de clases" />
+          </div>
+
+          <div class="form-group">
+            <label>Gimnasio</label>
+            <select [(ngModel)]="form.gimnasio.id">
+              <option [value]="0" disabled>Seleccione un gimnasio</option>
+              @for (gimnasio of gimnasios; track gimnasio.id) {
+                <option [value]="gimnasio.id">
+                  {{ gimnasio.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-ghost" (click)="cerrarFormulario()">Cancelar</button>
+          <button class="btn-primary" (click)="guardar()">
+            {{ modoEdicion ? 'Guardar cambios' : 'Crear plan' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>
