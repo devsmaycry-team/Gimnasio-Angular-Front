@@ -9,17 +9,47 @@ import { Gimnasio } from '../../model/Gimnasio';
 })
 export class GimnasioService {
   
-  private appiServer = "";
+  private apiUrl = "";
+
   constructor(private httpClient: HttpClient) {
-    this.appiServer = environment.apiUrl;
+    this.apiUrl = environment.apiUrl;
   }
 
-  obtenerTodos(): Observable<any> {
-    return this.httpClient.get<Gimnasio[]>(this.appiServer + "/gimnasios");
+  // =========================
+  // GET ALL
+  // =========================
+  obtenerTodos(): Observable<Gimnasio[]> {
+    return this.httpClient.get<Gimnasio[]>(`${this.apiUrl}/gimnasios`);
   }
 
+  // =========================
+  // GET BY ID
+  // =========================
   obtenerPorId(id: number): Observable<Gimnasio> {
-    return this.httpClient.get<Gimnasio>(`${this.appiServer}/gimnasios/${id}`);
+    return this.httpClient.get<Gimnasio>(`${this.apiUrl}/gimnasios/${id}`);
   }
 
+  // =========================
+  // CREATE
+  // =========================
+  crear(gimnasio: Gimnasio): Observable<Gimnasio> {
+    return this.httpClient.post<Gimnasio>(`${this.apiUrl}/gimnasios`, gimnasio);
+  }
+
+  // =========================
+  // UPDATE
+  // =========================
+  actualizar(id: number, gimnasio: Gimnasio): Observable<Gimnasio> {
+    return this.httpClient.put<Gimnasio>(
+      `${this.apiUrl}/gimnasios/${id}`,
+      gimnasio
+    );
+  }
+
+  // =========================
+  // DELETE
+  // =========================
+  eliminar(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiUrl}/gimnasios/${id}`);
+  }
 }

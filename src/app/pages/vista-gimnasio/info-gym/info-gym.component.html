@@ -1,33 +1,76 @@
 <!-- Tabla -->
-  <div class="section">
-    <h2 class="section-title">Usuarios del sistema</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre gimnasio</th>
-            <th>Direccion</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>Codigo gym</th>
-            <th>Cant. socios</th>
-            <th>Cant. planes</th>
-            <th>Cant. entrenadores</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-            <tr>
-              <td><strong>{{ gimnasio?.id}}</strong></td>
-              <td class="muted">{{ gimnasio?.nombre }}</td>
-              <td><span class="muted">{{ gimnasio?.direccion }}</span></td>
-              <td><span class="muted">{{ gimnasio?.telefono }}</span></td>
-              <td><span class="muted">{{ gimnasio?.email }}</span></td>
-              <td><span class="muted">{{ gimnasio?.codigoGym }}</span></td>
-              <td class="text-right">
-            </tr>
-        </tbody>
-      </table>
-    </div>
+<div class="section">
+  <h2 class="section-title">Usuarios del sistema</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre gimnasio</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Email</th>
+          <th>Código gym</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngIf="gimnasio">
+
+          <!-- ID (no editable) -->
+          <td>
+            <strong>{{ gimnasio.id }}</strong>
+          </td>
+
+          <!-- Nombre -->
+          <td>
+            <span *ngIf="!editando">{{ gimnasio.nombre }}</span>
+            <input *ngIf="editando" [(ngModel)]="gimnasioEdit!.nombre">
+          </td>
+
+          <!-- Dirección -->
+          <td>
+            <span *ngIf="!editando">{{ gimnasio.direccion }}</span>
+            <input *ngIf="editando" [(ngModel)]="gimnasioEdit!.direccion">
+          </td>
+
+          <!-- Teléfono -->
+          <td>
+            <span *ngIf="!editando">{{ gimnasio.telefono }}</span>
+            <input *ngIf="editando" [(ngModel)]="gimnasioEdit!.telefono">
+          </td>
+
+          <!-- Email -->
+          <td>
+            <span *ngIf="!editando">{{ gimnasio.email }}</span>
+            <input *ngIf="editando" [(ngModel)]="gimnasioEdit!.email">
+          </td>
+
+          <!-- Código gym -->
+          <td>
+            <span *ngIf="!editando">{{ gimnasio.codigoGym }}</span>
+            <input *ngIf="editando" [(ngModel)]="gimnasioEdit!.codigoGym">
+          </td>
+
+          <!-- Acciones -->
+          <td>
+            <button *ngIf="!editando" (click)="activarEdicion()">
+              Editar
+            </button>
+
+            <button *ngIf="editando" (click)="guardar()">
+              Guardar
+            </button>
+
+            <button *ngIf="editando" (click)="cancelar()">
+              Cancelar
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
