@@ -24,7 +24,7 @@ export class InfoGymComponent {
       const id = params.get('id');
 
       if (id) {
-        console.log("ID recibido:", id);
+        console.log("ID recibido de dashboard:", id);
         const gimnasioId = Number(id);
         this.gimnasioPorId(gimnasioId);
       }
@@ -35,7 +35,7 @@ export class InfoGymComponent {
     this.gimnasioService.obtenerPorId(id).subscribe({
       next: (data: Gimnasio) => {
         this.gimnasio = data;
-        console.log('Gimnasio cargado:', data);
+       // console.log('Gimnasio cargado:', data);
       },
       error: (err) => {
         console.error('Error al traer gimnasio:', err);

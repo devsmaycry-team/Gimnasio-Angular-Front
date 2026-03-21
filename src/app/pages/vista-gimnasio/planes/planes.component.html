@@ -93,10 +93,11 @@
 
           <div class="form-group">
             <label>Gimnasio</label>
-            <select [(ngModel)]="form.gimnasio.id">
-              <option [value]="0" disabled>Seleccione un gimnasio</option>
+            <select [(ngModel)]="form.gimnasio">
+              <option [ngValue]="null" disabled>Seleccione un gimnasio</option>
+
               @for (gimnasio of gimnasios; track gimnasio.id) {
-                <option [value]="gimnasio.id">
+                <option [ngValue]="gimnasio">
                   {{ gimnasio.nombre }}
                 </option>
               }

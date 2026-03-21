@@ -24,6 +24,13 @@ export class PlanService {
   }
 
   // =========================
+  // OBTENER POR GYM
+  // =========================
+  obtenerPorGimnasio(id: number): Observable<Plan[]> {
+    return this.httpClient.get<Plan[]>(`${this.apiServer}/api/planes/planesgym/${id}`);
+  }
+
+  // =========================
   // OBTENER POR ID
   // =========================
   obtenerPorId(id: number): Observable<Plan> {

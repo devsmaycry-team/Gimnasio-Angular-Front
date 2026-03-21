@@ -228,3 +228,140 @@ td.muted {
   border-color: var(--gris-claro);
   color: var(--blanco);
 }
+
+
+
+/* ── Modal Overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro traslúcido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px); /* Desenfoque de fondo */
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ── Caja del Modal ── */
+.modal-box {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 2rem;
+  width: 520px;
+  max-width: 90vw;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--borde);
+}
+
+/* ── Formulario Grid ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas */
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Label estilo minimalista y uppercase */
+.form-group label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Inputs y Selects */
+.form-group input,
+.form-group select {
+  background-color: var(--oscuro);
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 10px 14px;
+  color: var(--blanco);
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Focus con el color Dorado de tu marca */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--dorado);
+  background-color: var(--tarjeta);
+  box-shadow: 0 0 0 1px var(--dorado);
+}
+
+.form-group input::placeholder {
+  color: #444;
+}
+
+/* Campo de ancho completo si es necesario */
+.full-width {
+  grid-column: span 2;
+}
+
+/* ── Animaciones ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Ajustes de Botones (Si no los tienes globales) ── */
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid var(--rojo);
+  color: var(--rojo);
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--rojo);
+  color: white;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--gris);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gris-claro);
+  color: var(--blanco);
+}

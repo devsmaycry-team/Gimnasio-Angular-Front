@@ -6,6 +6,7 @@ import { PlanRequest } from '../../../model/RequestDTO/PlanRequest';
 import { Gimnasio } from '../../../model/Gimnasio';
 import { PlanService } from '../../../services/Plan/Plan.service';
 import { GimnasioService } from '../../../services/Gimnasio/Gimnasio.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-planes',
@@ -15,62 +16,87 @@ import { GimnasioService } from '../../../services/Gimnasio/Gimnasio.service';
   styleUrl: './planes.component.css'
 })
 export class PlanesComponent implements OnInit {
-  
-  planes: any[] = []; // Usamos any porque el back manda gimnasio_id en lugar del objeto gimnasio
+  planes: any[] = [];
   gimnasios: Gimnasio[] = [];
   cargando: boolean = false;
   error: string | null = null;
   
+  // Variable clave para saber qué planes mostrar
+  gimnasioSeleccionadoId: number | null = null;
+
   mostrarFormulario: boolean = false;
   modoEdicion: boolean = false;
   form: Plan = this.inicializarForm();
 
   constructor(
     private planService: PlanService,
-    private gimnasioService: GimnasioService
+    private gimnasioService: GimnasioService,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    // 1. Cargamos primero los gimnasios para tener los nombres listos
-    this.cargarGimnasios();
-  }
+ngOnInit(): void {
+  this.route.parent?.paramMap.subscribe(params => {
+    const id = params.get('id');
 
-  // --- Carga de datos ---
+    //console.log('ID recibido :', id);
 
+    if (id) {
+      this.gimnasioSeleccionadoId = Number(id);
+      this.obtenerGimnasioPorId(this.gimnasioSeleccionadoId);
+      this.cargarPlanes(this.gimnasioSeleccionadoId);
+    }
+  });
+}
+
+  // 1. Cargar la lista de gimnasios para el selector
   cargarGimnasios(): void {
     this.gimnasioService.obtenerTodos().subscribe({
       next: (data) => {
         this.gimnasios = data;
-        // 2. Solo cuando tenemos los gimnasios, traemos los planes
-        this.cargarPlanes();
+        // Opcional: Cargar planes del primer gimnasio por defecto
+        if (this.gimnasios.length > 0) {
+          this.gimnasioSeleccionadoId = this.gimnasios[0].id!;
+          this.cargarPlanes(this.gimnasioSeleccionadoId);
+        }
       },
-      error: (err) => {
-        this.error = 'Error al cargar los gimnasios base';
-        console.error(err);
+      error: (err) => this.error = 'Error al cargar los gimnasios'
+    });
+  }
+
+  obtenerGimnasioPorId(id: number): void {
+    this.gimnasioService.obtenerPorId(id).subscribe({
+      next: (gimnasio) => {
+
+
+        this.gimnasios = [gimnasio];
+        //console.log(gimnasio);
+        this.form.gimnasio = gimnasio;
+      },
+      error: () => {
+        this.error = 'No se pudo obtener el gimnasio';
       }
     });
   }
 
-  cargarPlanes(): void {
+  // 2. Cargar planes filtrados por ID de gimnasio
+  cargarPlanes(id: number): void {
     this.cargando = true;
-    this.planService.obtenerTodos().subscribe({
+    this.gimnasioSeleccionadoId = id; // Actualizamos el ID actual
+    this.planService.obtenerPorGimnasio(id).subscribe({
       next: (data) => {
         this.planes = data;
         this.cargando = false;
       },
       error: (err) => {
-        this.error = 'Error al cargar la lista de planes';
+        this.error = 'Error al cargar los planes de este gimnasio';
         this.cargando = false;
       }
     });
   }
 
-  // --- Operaciones CRUD ---
-
   guardar(): void {
     if (!this.validarFormulario()) return;
 
-    // Mapeo al DTO que espera el Backend
     const dto: PlanRequest = {
       id: this.modoEdicion ? this.form.id : undefined,
       nombre: this.form.nombre,
@@ -86,20 +112,32 @@ export class PlanesComponent implements OnInit {
 
     operacion.subscribe({
       next: () => {
-        this.cargarPlanes();
+        // Al guardar, refrescamos los planes del gimnasio que estaba seleccionado
+        if (this.gimnasioSeleccionadoId) {
+          this.cargarPlanes(this.gimnasioSeleccionadoId);
+        }
         this.cerrarFormulario();
       },
-      error: (err) => {
-        this.error = 'No se pudo guardar el plan. Verifica los datos.';
-        console.error(err);
-      }
+      error: (err) => this.error = 'Error al guardar el plan'
     });
+  }
+
+  // Al cambiar el select en el HTML, llamamos a esta función
+  onGimnasioChange(event: any): void {
+    const id = Number(event.target.value);
+    if (id) {
+      this.cargarPlanes(id);
+    }
   }
 
   eliminar(id: number): void {
     if (confirm('¿Deseas eliminar este plan permanentemente?')) {
       this.planService.eliminar(id).subscribe({
-        next: () => this.cargarPlanes(),
+        next: () => {
+          if (this.gimnasioSeleccionadoId) {
+            this.cargarPlanes(this.gimnasioSeleccionadoId);
+          }
+        },
         error: () => this.error = 'No se pudo eliminar el plan'
       });
     }
