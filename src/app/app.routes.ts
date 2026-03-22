@@ -11,6 +11,7 @@ import { SuperAdminComponent } from './pages/super-admin/super-admin.component';
 import { VistaGimnasioComponent } from './pages/vista-gimnasio/vista-gimnasio.component';
 import { InfoGymComponent } from './pages/vista-gimnasio/info-gym/info-gym.component';
 import { PlanesComponent } from './pages/vista-gimnasio/planes/planes.component';
+import { SociosComponent } from './pages/vista-gimnasio/socios/socios.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   { path: 'menu', component: MenuPrincipalComponent },
@@ -38,7 +39,8 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'infogym', pathMatch: 'full' }, 
       { path: 'infogym', component: InfoGymComponent },
-      { path: 'planes', component: PlanesComponent }
+      { path: 'planes', component: PlanesComponent },
+      { path: 'socios', component: SociosComponent }
     ]
   },
 

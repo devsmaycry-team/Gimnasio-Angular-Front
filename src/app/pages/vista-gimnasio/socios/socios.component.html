@@ -1,0 +1,126 @@
+<div class="dashboard-wrapper">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Gestión de Socios</h1>
+            <p class="page-sub">CRUD completo · Socios del gimnasio</p>
+        </div>
+        <button class="btn-primary" (click)="abrirCrear()">
+            <i class="fas fa-plus"></i> Nuevo Socio
+        </button>
+    </div>
+
+    @if(error){
+    <div class="error-banner">{{error}}</div>
+    }
+
+    <div class="section">
+        <h2 class="section-title">Socios registrados</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número de socio</th>
+                        <th>Observación médica</th>
+                        <th>Usuario</th>
+                        <th>Gimnasio</th>
+                        <th class="text-right">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @if(cargando){
+                    <tr>
+                        <td colspan="5" class="muted" style="text-align:center;padding:2rem;">
+                            Cargando socios...
+                        </td>
+                    </tr>
+                    }
+
+                    @for(socio of socios;track socio.id){
+                    <tr>
+
+                        <td>
+                            <strong>{{socio.numero_socio}}</strong>
+                        </td>
+
+                        <td class="muted">
+                            {{socio.observacionMedica}}
+                        </td>
+
+                        <td>
+                            {{socio.usuario?.persona?.nombre}} {{socio.usuario?.persona?.apellido}}
+                        </td>
+
+                        <td>
+                            {{socio.gimnasio?.nombre}}
+                        </td>
+
+                        <td class="text-right">
+                            <div class="actions">
+                                <button class="btn-ghost" (click)="abrirEditar(socio)">
+                                    Editar
+                                </button>
+                                <button class="btn-primary" (click)="eliminar(socio.id!)">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @if(mostrarFormulario){
+    <div class="modal-overlay" (click)="cerrarFormulario()">
+        <div class="modal-box" (click)="$event.stopPropagation()">
+
+            <div class="modal-header">
+                <h2 class="section-title" style="margin:0">
+                    {{modoEdicion?'Editar Socio':'Nuevo Socio'}}
+                </h2>
+                <button class="btn-ghost" (click)="cerrarFormulario()">✕</button>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Número de socio</label>
+                    <input type="number" [(ngModel)]="form.numero_socio" placeholder="Número de socio" />
+                </div>
+
+                <div class="form-group">
+                    <label>Observación médica</label>
+                    <input type="text" [(ngModel)]="form.observacionMedica" placeholder="Observación médica" />
+                </div>
+
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <select [(ngModel)]="form.usuario">
+                        <option [ngValue]="null" disabled>Seleccione un usuario</option>
+                        @for(usuario of usuarios;track usuario.id){
+                        <option [ngValue]="usuario">
+                            {{usuario.persona.nombre}} {{usuario.persona.apellido}}
+                        </option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-ghost" (click)="cerrarFormulario()">Cancelar</button>
+                <button class="btn-primary" (click)="guardar()">
+                    {{modoEdicion?'Guardar cambios':'Crear socio'}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+    }
+
+</div>
