@@ -21,7 +21,7 @@ export class UsuarioService {
 
   obtenerTodos(): Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(
-      `${this.apiServer}/api/usuario/todos`
+      `${this.apiServer}/usuario/todos`
     );
   }
 

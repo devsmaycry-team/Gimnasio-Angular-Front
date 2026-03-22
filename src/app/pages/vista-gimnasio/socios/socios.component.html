@@ -37,7 +37,7 @@
                     </tr>
                     }
 
-                    @for(socio of socios;track socio.id){
+                    @for(socio of sociosResponse;track socio.id){
                     <tr>
 
                         <td>
@@ -49,11 +49,11 @@
                         </td>
 
                         <td>
-                            {{socio.usuario?.persona?.nombre}} {{socio.usuario?.persona?.apellido}}
+                            {{socio.nombre}} {{socio.apellido}}
                         </td>
 
                         <td>
-                            {{socio.gimnasio?.nombre}}
+                            {{socio.gimnasioAsociado}}
                         </td>
 
                         <td class="text-right">

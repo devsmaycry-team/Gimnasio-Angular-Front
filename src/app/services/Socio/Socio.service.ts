@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Socio } from '../../model/Socio';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { SocioResponse } from '../../model/ResponseDTO/SocioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,9 @@ export class SocioService {
   // OBTENER POR GIMNASIO
   // =========================
 
-  obtenerPorGimnasio(id: number): Observable<Socio[]> {
-    return this.httpClient.get<Socio[]>(
-      `${this.apiServer}/api/socios/gimnasio/${id}`
+  obtenerPorGimnasio(id: number): Observable<SocioResponse[]> {
+    return this.httpClient.get<SocioResponse[]>(
+      `${this.apiServer}/api/socios/findbygym/${id}`
     );
   }
 
