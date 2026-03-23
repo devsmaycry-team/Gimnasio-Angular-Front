@@ -104,7 +104,7 @@
                         <option [ngValue]="null" disabled>Seleccione un usuario</option>
                         @for(usuario of usuarios;track usuario.id){
                         <option [ngValue]="usuario">
-                            {{usuario.persona.nombre}} {{usuario.persona.apellido}}
+                            {{usuario.nombre}} {{usuario.apellido}}
                         </option>
                         }
                     </select>

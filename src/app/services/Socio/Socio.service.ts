@@ -4,6 +4,7 @@ import { Socio } from '../../model/Socio';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { SocioResponse } from '../../model/ResponseDTO/SocioResponse';
+import { SocioRequest } from '../../model/RequestDTO/SocioRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -50,22 +51,22 @@ export class SocioService {
   // CREAR
   // =========================
 
-  crear(socio: Socio): Observable<Socio> {
-    return this.httpClient.post<Socio>(
-      `${this.apiServer}/api/socios`,
+  crear(socio: SocioRequest): Observable<void> {
+    return this.httpClient.post<void>(
+      `${this.apiServer}/api/socios/crear`,
       socio
-    );
+    )
   }
 
   // =========================
   // ACTUALIZAR
   // =========================
 
-  actualizar(id: number, socio: Socio): Observable<Socio> {
-    return this.httpClient.put<Socio>(
+  actualizar(id: number, socio: SocioRequest): Observable<void> {
+    return this.httpClient.put<void>(
       `${this.apiServer}/api/socios/${id}`,
       socio
-    );
+    )
   }
 
   // =========================

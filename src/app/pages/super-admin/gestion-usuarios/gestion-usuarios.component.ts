@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Usuario } from '../../../model/Usuario';
 import { UsuarioService } from '../../../services/Usuario/Usuario.service';
+import { Usuario } from '../../../model/Usuario';
+import { UsuarioResponse } from '../../../model/ResponseDTO/UsuarioResponse';
 
 @Component({
   selector: 'app-gestion-usuarios',
@@ -12,22 +13,21 @@ import { UsuarioService } from '../../../services/Usuario/Usuario.service';
   styleUrl: './gestion-usuarios.component.css'
 })
 export class GestionUsuariosComponent implements OnInit {
-
-  usuarios: Usuario[] = [];
+  usuarios: UsuarioResponse[] = [];
   cargando: boolean = false;
   error: string = '';
-
-  // Control del formulario
   mostrarFormulario: boolean = false;
   modoEdicion: boolean = false;
-  usuarioSeleccionado: Usuario | null = null;
-
-  // Modelo del formulario
+  usuarioSeleccionado: UsuarioResponse | null = null;
   form: Partial<Usuario> & { password?: string } = {
     correo: '',
     password: '',
     activo: true,
-    persona: { nombre: '', apellido: '', celular: '' }
+    persona: {
+      nombre: '',
+      apellido: '',
+      celular: ''
+    }
   };
 
   constructor(private usuarioService: UsuarioService) {}
@@ -38,9 +38,11 @@ export class GestionUsuariosComponent implements OnInit {
 
   cargarUsuarios(): void {
     this.cargando = true;
-    this.usuarioService.obtenerTodos().subscribe({
+    this.error = '';
+    this.usuarioService.obtenerTodosResponse().subscribe({
       next: (data) => {
         this.usuarios = data;
+        console.log("Usuarios cargados:", this.usuarios);
         this.cargando = false;
       },
       error: (err) => {
@@ -57,19 +59,27 @@ export class GestionUsuariosComponent implements OnInit {
       correo: '',
       password: '',
       activo: true,
-      persona: { nombre: '', apellido: '', celular: '' }
+      persona: {
+        nombre: '',
+        apellido: '',
+        celular: ''
+      }
     };
     this.mostrarFormulario = true;
   }
 
-  abrirEditar(usuario: Usuario): void {
+  abrirEditar(usuario: UsuarioResponse): void {
     this.modoEdicion = true;
     this.usuarioSeleccionado = usuario;
     this.form = {
       id: usuario.id,
       correo: usuario.correo,
       activo: usuario.activo,
-      persona: { ...usuario.persona }
+      persona: {
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        celular: ''
+      }
     };
     this.mostrarFormulario = true;
   }
@@ -81,39 +91,48 @@ export class GestionUsuariosComponent implements OnInit {
 
   guardar(): void {
     const usuario = this.form as Usuario;
-
-    if (this.modoEdicion) {
-      // Por ahora no hay endpoint — lo dejamos preparado
-      console.warn('Endpoint de edición pendiente en el backend');
-      this.cerrarFormulario();
+    if (this.modoEdicion && this.usuarioSeleccionado) {
+      this.usuarioService.actualizar(
+        this.usuarioSeleccionado.id,
+        usuario
+      ).subscribe({
+        next: () => {
+          this.cargarUsuarios();
+          this.cerrarFormulario();
+        },
+        error: (err) =>
+          console.error('Error al actualizar usuario:', err)
+      });
       return;
     }
-
     this.usuarioService.crear(usuario).subscribe({
       next: () => {
         this.cargarUsuarios();
         this.cerrarFormulario();
       },
-      error: (err) => console.error('Error al crear usuario:', err)
+      error: (err) =>
+        console.error('Error al crear usuario:', err)
     });
   }
 
   eliminar(id: number): void {
-    if (!confirm('¿Estás seguro de que querés eliminar este usuario?')) return;
-
+    if (!confirm('¿Estás seguro de que querés eliminar este usuario?'))
+      return;
     this.usuarioService.eliminar(id).subscribe({
-      next: () => this.cargarUsuarios(),
-      error: (err) => console.error('Error al eliminar:', err)
+      next: () =>
+        this.cargarUsuarios(),
+      error: (err) =>
+        console.error('Error al eliminar:', err)
     });
   }
 
-  getNombreCompleto(usuario: Usuario): string {
-    if (!usuario.persona) return 'Sin persona';
-    return `${usuario.persona.nombre} ${usuario.persona.apellido}`;
+  getNombreCompleto(usuario: UsuarioResponse): string {
+    return `${usuario.nombre} ${usuario.apellido}`;
   }
 
-  getRol(usuario: Usuario): string {
-    if (!usuario.userRols || usuario.userRols.length === 0) return 'Sin rol';
+  getRol(usuario: any): string {
+    if (!usuario.userRols || usuario.userRols.length === 0)
+      return 'Sin rol';
     return usuario.userRols[0].rol.cargo;
   }
 }

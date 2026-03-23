@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../../model/Usuario';
 import { environment } from '../../../environments/environment.development';
+import { UsuarioResponse } from '../../model/ResponseDTO/UsuarioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UsuarioService {
   }
 
   // =========================
-  // OBTENER TODOS
+  // OBTENER TODOS POR OBJETO
   // =========================
 
   obtenerTodos(): Observable<Usuario[]> {
@@ -24,6 +25,17 @@ export class UsuarioService {
       `${this.apiServer}/usuario/todos`
     );
   }
+
+  // =========================
+  // OBTENER TODOS RESPONSE
+  // =========================
+
+  obtenerTodosResponse(): Observable<UsuarioResponse[]> {
+    return this.httpClient.get<UsuarioResponse[]>(
+      `${this.apiServer}/usuario/todos`
+    );
+  }
+
 
   // =========================
   // OBTENER POR ID
@@ -41,7 +53,7 @@ export class UsuarioService {
 
   crear(usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(
-      `${this.apiServer}/api/usuario/crear`,
+      `${this.apiServer}/usuario/crear`,
       usuario
     );
   }
@@ -52,7 +64,7 @@ export class UsuarioService {
 
   actualizar(id: number, usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(
-      `${this.apiServer}/api/usuario/crear`,
+      `${this.apiServer}/usuario/crear`,
       usuario
     );
   }
@@ -63,7 +75,7 @@ export class UsuarioService {
 
   eliminar(id: number): Observable<void> {
     return this.httpClient.delete<void>(
-      `${this.apiServer}/api/usuario/borrar/${id}`
+      `${this.apiServer}/usuario/borrar/${id}`
     );
   }
 
