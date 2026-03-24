@@ -1,0 +1,120 @@
+<div class="dashboard-wrapper">
+
+  <!-- Encabezado -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Gestión de Entrenadores</h1>
+      <p class="page-sub">CRUD completo · Especialidad · Matrícula</p>
+    </div>
+    <button class="btn-primary" (click)="abrirCrear()">
+      <i class="fas fa-plus"></i> Nuevo Entrenador
+    </button>
+  </div>
+
+  <!-- Error -->
+  @if (error) {
+    <div class="error-banner">{{ error }}</div>
+  }
+
+  <!-- Tabla -->
+  <div class="section">
+    <h2 class="section-title">Entrenadores registrados</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+            <th>Matrícula</th>
+            <th>Rutinas</th>
+            <th class="text-right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (cargando) {
+            <tr>
+              <td colspan="5" class="muted" style="text-align:center; padding: 2rem;">
+                Cargando entrenadores...
+              </td>
+            </tr>
+          }
+          @for (entrenador of entrenadores; track entrenador.id) {
+            <tr>
+              <td><strong>{{ getNombreUsuario(entrenador.usuario_id) }}</strong></td>
+              <td><span class="code-tag">{{ entrenador.especialidad }}</span></td>
+              <td class="muted">{{ entrenador.matricula }}</td>
+              <td>
+                <span class="badge"
+                  [class.active]="(entrenador.rutinas?.length ?? 0) > 0"
+                  [class.inactive]="(entrenador.rutinas?.length ?? 0) === 0">
+                  {{ entrenador.rutinas?.length ?? 0 }} rutina(s)
+                </span>
+              </td>
+              <td class="text-right">
+                <div class="actions">
+                  <button class="btn-ghost" (click)="abrirEditar(entrenador)">Editar</button>
+                  <button class="btn-primary" (click)="eliminar(entrenador.id)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  @if (mostrarFormulario) {
+    <div class="modal-overlay" (click)="cerrarFormulario()">
+      <div class="modal-box" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+          <h2 class="section-title" style="margin:0">
+            {{ modoEdicion ? 'Editar Entrenador' : 'Nuevo Entrenador' }}
+          </h2>
+          <button class="btn-ghost" (click)="cerrarFormulario()">✕</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Usuario</label>
+            <select [(ngModel)]="form.usuario_id">
+              <option [ngValue]="null" disabled>Seleccioná un usuario</option>
+              @for (usuario of usuarios; track usuario.id) {
+                <option [ngValue]="usuario.id">
+                  {{ usuario.persona.nombre }} {{ usuario.persona.apellido }}
+                </option>
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Gimnasio</label>
+            <select [(ngModel)]="form.gimnasio_id">
+              <option [ngValue]="null" disabled>Seleccioná un gimnasio</option>
+              @for (gimnasio of gimnasios; track gimnasio.id) {
+                <option [ngValue]="gimnasio.id">{{ gimnasio.nombre }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Especialidad</label>
+            <input type="text" [(ngModel)]="form.especialidad" placeholder="Ej: Musculación" />
+          </div>
+          <div class="form-group">
+            <label>Matrícula</label>
+            <input type="text" [(ngModel)]="form.matricula" placeholder="Ej: MAT-001" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-ghost" (click)="cerrarFormulario()">Cancelar</button>
+          <button class="btn-primary" (click)="guardar()">
+            {{ modoEdicion ? 'Guardar cambios' : 'Crear entrenador' }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>
