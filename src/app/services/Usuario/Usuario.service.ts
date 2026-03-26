@@ -36,6 +36,15 @@ export class UsuarioService {
     );
   }
 
+  // =========================
+  // OBTENER TODOS SEGUN SOCIO GYM
+  // =========================
+
+  obtenerSegunSocioGym(id: number): Observable<UsuarioResponse[]> {
+    return this.httpClient.get<UsuarioResponse[]>(
+      `${this.apiServer}/usuario/gimnasio/${id}`
+    );
+  }
 
   // =========================
   // OBTENER POR ID

@@ -6,7 +6,7 @@ import { MenuPrincipalComponent } from './menu-principal/menu-principal.componen
 import { AdminComponent } from './pages/admin/admin.component';
 import { EntrenadorComponent } from './pages/entrenador/entrenador.component';
 import { DashboardGeneralComponent } from './pages/super-admin/dashboard-general/dashboard-general.component';
-import { GestionUsuariosComponent } from './pages/super-admin/gestion-usuarios/gestion-usuarios.component';
+import { GestionUsuariosComponent } from './pages/vista-gimnasio/gestion-usuarios/gestion-usuarios.component';
 import { SuperAdminComponent } from './pages/super-admin/super-admin.component';
 import { EntrenadoresComponent } from './pages/vista-gimnasio/entrenadores/entrenadores.component';
 import { InfoGymComponent } from './pages/vista-gimnasio/info-gym/info-gym.component';
@@ -28,8 +28,8 @@ export const routes: Routes = [
     children: [
       // Al entrar a /super-admin, carga automáticamente el dashboard
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardGeneralComponent },
-      { path: 'usuarios', component: GestionUsuariosComponent },
+      { path: 'dashboard', component: DashboardGeneralComponent }
+      
       
       // { path: 'usuarios', component: UsuariosComponent },
       // { path: 'auditoria', component: AuditoriaComponent },
@@ -43,7 +43,8 @@ export const routes: Routes = [
       { path: 'infogym', component: InfoGymComponent },
       { path: 'planes', component: PlanesComponent },
       { path: 'socios', component: SociosComponent },
-      { path: 'entrenadores', component: EntrenadoresComponent }
+      { path: 'entrenadores', component: EntrenadoresComponent },
+      { path: 'usuarios', component: GestionUsuariosComponent },
     ]
   },
 

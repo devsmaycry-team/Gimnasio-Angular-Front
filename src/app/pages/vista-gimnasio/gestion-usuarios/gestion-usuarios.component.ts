@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../../services/Usuario/Usuario.service';
 import { Usuario } from '../../../model/Usuario';
 import { UsuarioResponse } from '../../../model/ResponseDTO/UsuarioResponse';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-usuarios',
@@ -14,6 +15,7 @@ import { UsuarioResponse } from '../../../model/ResponseDTO/UsuarioResponse';
 })
 export class GestionUsuariosComponent implements OnInit {
   usuarios: UsuarioResponse[] = [];
+  usuariosDelGym: UsuarioResponse[] = [];
   cargando: boolean = false;
   error: string = '';
   mostrarFormulario: boolean = false;
@@ -30,10 +32,21 @@ export class GestionUsuariosComponent implements OnInit {
     }
   };
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, private route: ActivatedRoute) {}
 
+    // Variable clave para saber qué usuarios mostrar
+    gimnasioSeleccionadoId: number | null = null;
   ngOnInit(): void {
-    this.cargarUsuarios();
+    this.route.parent?.paramMap.subscribe(params => {
+      const id = params.get('id');
+      //console.log('ID recibido :', id);
+
+      if (id) {
+        this.gimnasioSeleccionadoId = Number(id);
+        this.cargarUsuarios();
+        this.cargarUsuariosByGym(this.gimnasioSeleccionadoId);
+      }
+    });
   }
 
   cargarUsuarios(): void {
@@ -52,6 +65,23 @@ export class GestionUsuariosComponent implements OnInit {
       }
     });
   }
+
+    cargarUsuariosByGym(id:number): void {
+      this.cargando = true;
+      this.error = '';
+      this.usuarioService.obtenerSegunSocioGym(id).subscribe({
+        next: (data) => {
+          this.usuariosDelGym = data;
+          console.log("Usuarios cargados segun gym:", this.usuariosDelGym);
+          this.cargando = false;
+        },
+        error: (err) => {
+          console.error('Error al cargar usuarios:', err);
+          this.error = 'No se pudieron cargar los usuarios.';
+          this.cargando = false;
+        }
+      });
+    }
 
   abrirCrear(): void {
     this.modoEdicion = false;
@@ -130,9 +160,22 @@ export class GestionUsuariosComponent implements OnInit {
     return `${usuario.nombre} ${usuario.apellido}`;
   }
 
-  getRol(usuario: any): string {
-    if (!usuario.userRols || usuario.userRols.length === 0)
-      return 'Sin rol';
-    return usuario.userRols[0].rol.cargo;
+  getRol(usuario: UsuarioResponse): string {
+  if (!usuario.roles || usuario.roles.length === 0)
+    return 'Sin rol';
+
+  const rolesTraducidos = usuario.roles.map(role => {
+      switch (role) {
+        case 'ROLE_ENTRENADOR':
+          return 'Entrenador';
+        case 'ROLE_ADMIN':
+          return 'Admin';
+        case 'ROLE_SUPERADMIN':
+          return 'SuperAdmin';
+        default:
+          return role; // por si aparece un rol nuevo
+      }
+    });
+    return rolesTraducidos.join(', ');
   }
 }

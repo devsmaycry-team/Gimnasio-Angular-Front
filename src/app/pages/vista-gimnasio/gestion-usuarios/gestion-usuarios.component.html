@@ -25,7 +25,7 @@
           <tr>
             <th>Nombre completo</th>
             <th>Correo</th>
-            <th>Rol</th>
+            <th>Roles</th>
             <th>Estado</th>
             <th class="text-right">Acciones</th>
           </tr>
@@ -38,7 +38,7 @@
               </td>
             </tr>
           }
-          @for (usuario of usuarios; track usuario.id) {
+          @for (usuario of usuariosDelGym; track usuario.id) {
             <tr>
               <td><strong>{{ getNombreCompleto(usuario) }}</strong></td>
               <td class="muted">{{ usuario.correo }}</td>
