@@ -40,7 +40,7 @@
           }
           @for (entrenador of entrenadores; track entrenador.id) {
             <tr>
-              <td><strong>{{ getNombreUsuario(entrenador.usuario_id) }}</strong></td>
+              <td><strong>{{ entrenador.nombreUsuario }}</strong></td>
               <td><span class="code-tag">{{ entrenador.especialidad }}</span></td>
               <td class="muted">{{ entrenador.matricula }}</td>
               <td>
@@ -53,7 +53,7 @@
               <td class="text-right">
                 <div class="actions">
                   <button class="btn-ghost" (click)="abrirEditar(entrenador)">Editar</button>
-                  <button class="btn-primary" (click)="eliminar(entrenador.id)">Eliminar</button>
+                  <button class="btn-primary" (click)="eliminar(entrenador.id!)">Eliminar</button>
                 </div>
               </td>
             </tr>
@@ -82,7 +82,7 @@
               <option [ngValue]="null" disabled>Seleccioná un usuario</option>
               @for (usuario of usuarios; track usuario.id) {
                 <option [ngValue]="usuario.id">
-                  {{ usuario.persona.nombre }} {{ usuario.persona.apellido }}
+                  {{ usuario.nombre }} {{ usuario.nombre }}
                 </option>
               }
             </select>
@@ -91,9 +91,7 @@
             <label>Gimnasio</label>
             <select [(ngModel)]="form.gimnasio_id">
               <option [ngValue]="null" disabled>Seleccioná un gimnasio</option>
-              @for (gimnasio of gimnasios; track gimnasio.id) {
-                <option [ngValue]="gimnasio.id">{{ gimnasio.nombre }}</option>
-              }
+                <option [ngValue]="gimnasio!.id">{{ gimnasio!.nombre }}</option>
             </select>
           </div>
           <div class="form-group">
@@ -108,9 +106,9 @@
 
         <div class="modal-footer">
           <button class="btn-ghost" (click)="cerrarFormulario()">Cancelar</button>
-          <button class="btn-primary" (click)="guardar()">
+           <button class="btn-primary" (click)="guardar()">
             {{ modoEdicion ? 'Guardar cambios' : 'Crear entrenador' }}
-          </button>
+          </button> 
         </div>
 
       </div>

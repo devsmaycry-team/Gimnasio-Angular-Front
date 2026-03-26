@@ -20,6 +20,11 @@ export class EntrenadorService {
     return this.http.get<EntrenadorResponse>(`${this.apiUrl}/${id}`);
   }
 
+  obtenerPorGimnasio(id: number): Observable<EntrenadorResponse[]> {
+    return this.http.get<EntrenadorResponse[]>(`${this.apiUrl}/gimnasio/${id}`);
+  }
+  
+
   crear(body: any): Observable<EntrenadorResponse> {
     return this.http.post<EntrenadorResponse>(this.apiUrl, body);
   }
